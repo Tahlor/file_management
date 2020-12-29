@@ -46,18 +46,22 @@ def change_windows_file_times(fname, creation_time=None, access_time=None, modif
     # Output stats
     return {'accessed': file_stats.st_atime, 'modified': file_stats.st_mtime, 'created': file_stats.st_ctime}
 
-def change_linux_file_times(fname, access_time, modified_time):
+def change_linux_file_times(fname, access_time, modified_time, *args, **kwargs):
     """ Not tested
-
+    
     Args:
-        fname:
-        access_time:
-        modified_time:
-
+        fname (str/Path): Path of file to have new time
+        access_time (int, Unix Epoch Time): New access time
+        modified_time (int, Unix Epoch Time): New modified time
     Returns:
+        dict: new times from filesystem
 
     """
     os.utime(fname, (access_time, modified_time))
+    file_stats = os.stat(fname)
+
+    # Output stats
+    return {'accessed': file_stats.st_atime, 'modified': file_stats.st_mtime, 'created': file_stats.st_ctime}
 
 def compare_files(s, d, windows=True):
     """
