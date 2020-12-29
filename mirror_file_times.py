@@ -5,6 +5,11 @@ from tqdm import tqdm
 
 """
 This copies all of the created, modified, and access times from one folder structure over to a mirrored one
+
+Usage:
+
+python mirror_file_times.py /src/dir /dest/dir
+
 """
 
 def change_windows_file_times(fname, creation_time=None, access_time=None, modified_time=None):
