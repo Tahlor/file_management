@@ -41,7 +41,7 @@ def change_windows_file_times(fname, creation_time=None, access_time=None, modif
             win32con.FILE_FLAG_BACKUP_SEMANTICS, None)
     win32file.SetFileTime(winfile, CreationTime=creation_time, LastAccessTime=access_time, LastWriteTime=modified_time)
     winfile.close()
-    file_stats = os.stat(f)
+    file_stats = os.stat(fname)
 
     # Output stats
     return {'accessed': file_stats.st_atime, 'modified': file_stats.st_mtime, 'created': file_stats.st_ctime}
